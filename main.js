@@ -5,7 +5,6 @@
 // Functions
 
 function createCardVariables(color) {
-  var currentColor = color;
   var deck = [];
   var currentCard = '';
   for(var i = 0; i < 13; i ++) {
