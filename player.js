@@ -1,13 +1,13 @@
 class Player {
   constructor() {
     this.id = Date.now();
-    this.wins;
+    this.wins = 0;
     this.hand = [];
   }
   playCard(game) {
     if(this.hand.length > 0) {
       var activeCard = this.hand.shift();
-      game.deck.push(activeCard);
+      game.deck.unshift(activeCard);
     }
   }
   saveWinsToStorage() {
