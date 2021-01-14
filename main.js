@@ -3,9 +3,6 @@
 // Event Listeners
 
 // Functions
-function getRandomElement(array) {
-  return array[Math.floor(Math.random() * array.length)];
-}
 
 function createCardVariables(color) {
   var currentColor = color;
