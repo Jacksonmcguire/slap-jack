@@ -14,7 +14,7 @@ class Game {
     }
   }
 
-  trackCentralDeck(player) {
+  trackCentralDeck() {
     if(this.deck[0] !== undefined && this.deck[0].includes('Jack')) {
       return 'SlapJack';
     } else if(this.deck.length > 1 && this.deck[0].slice(-1) === this.deck[1].slice(-1)) {
@@ -58,7 +58,7 @@ class Game {
 
   slap(player) {
     this.currentPlayer = player;
-    if(this.trackCentralDeck(player) === 'SlapJack') {
+    if(this.trackCentralDeck() === 'SlapJack') {
       player.hand = player.hand.concat(this.deck);
       this.deck = [];
     } else if(this.trackCentralDeck() === 'Doubles' || this.trackCentralDeck() === 'Sandwich') {
