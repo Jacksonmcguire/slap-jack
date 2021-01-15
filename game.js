@@ -5,25 +5,42 @@ class Game {
     this.deck = (createCardVariables('blue') + `,${createCardVariables('gold')}` + `,${createCardVariables('green')}` + `,${createCardVariables('red')}`).split(',');
     this.currentPlayer = this.player1;
   }
-  shuffle() {
-    for(var i = 0; i < this.deck.length; i++) {
-      var randomInt = Math.floor(Math.random() * this.deck.length);
-      var temporaryInt = this.deck[i];
-      this.deck[i] = this.deck[randomInt];
-      this.deck[randomInt] = temporaryInt;
+  shuffle(deck) {
+    for(var i = 0; i < deck.length; i++) {
+      var randomInt = Math.floor(Math.random() * deck.length);
+      var temporaryInt = deck[i];
+      deck[i] = deck[randomInt];
+      deck[randomInt] = temporaryInt;
     }
   }
 
-  trackCentralDeck() {
-    return this.deck[0];
+  trackCentralDeck(player) {
+    if(this.deck[0] !== undefined && this.deck[0].includes('Jack')) {
+      return 'SlapJack';
+    } else if(this.deck.length > 1 && this.deck[0].slice(-1) === this.deck[1].slice(-1)) {
+      return 'Doubles'
+    } else if(this.deck.length > 2 && this.deck[0].slice(-1) === this.deck[2].slice(-1)) {
+      return 'Sandwich';
+    } else {
+      return 'Bad Slap';
   }
+}
 
-  dealToMiddle() {
-    this.currentPlayer.playCard(this);
+  changeCurrentPlayer() {
     if(this.currentPlayer === this.player1) {
       this.currentPlayer = this.player2;
     } else {
       this.currentPlayer = this.player1;
+    }
+  }
+
+  dealToMiddle() {
+    if(this.currentPlayer.hand.length < 0) {
+      this.currentPlayer.playCard(this);
+      this.changeCurrentPlayer();
+    } else {
+      this.changeCurrentPlayer();
+      this.currentPlayer.playCard(this);
     }
   }
 
@@ -40,21 +57,30 @@ class Game {
   }
 
   slap(player) {
-    if(this.deck[0].includes('Jack')) {
+    this.currentPlayer = player;
+    if(this.trackCentralDeck(player) === 'SlapJack') {
       player.hand = player.hand.concat(this.deck);
       this.deck = [];
-      console.log('SlapJack');
-    } else if(this.deck[0].slice(-1) === this.deck[1].slice(-1)) {
+    } else if(this.trackCentralDeck() === 'Doubles' || this.trackCentralDeck() === 'Sandwich') {
       player.hand = player.hand.concat(this.deck);
       this.deck = [];
-      console.log('Doubles!');
-    } else if(this.deck[0].slice(-1) === this.deck[2].slice(-1)) {
-      player.hand = player.hand.concat(this.deck);
-      this.deck = [];
-      console.log('Sandwich');
+    } else if(this.trackCentralDeck() === 'Bad Slap') {
+      var firstCard = player.hand.shift();
+      this.changeCurrentPlayer();
+      this.currentPlayer.hand.push(firstCard);
     }
   }
-  win(player) {
-    player.wins ++;
+
+  reset() {
+    this.deck = (createCardVariables('blue') + `,${createCardVariables('gold')}` + `,${createCardVariables('green')}` + `,${createCardVariables('red')}`).split(',');
+    this.player1.hand = [];
+    this.player2.hand = [];
+    this.dealHands();
   }
-}
+
+  win(player) {
+      player.wins ++;
+      player.saveWinsToStorage();
+      player.lastStand = false;
+    }
+  }
