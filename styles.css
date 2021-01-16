@@ -24,9 +24,22 @@ li {
   width: 60%;
   margin: 0;
   border-radius: 5px;
-  box-shadow: 0px 0px 5px 5px rgba(107, 245, 130, 0.66); 
+  box-shadow: 0px 0px 5px 5px rgba(107, 245, 130, 0.66);
 }
 
 .middle-deck-container {
   flex: 1;
+  text-align: center;
+}
+
+.middle-deck {
+  height: 55%;
+  width: 60%;
+  margin: 0;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 5px rgba(107, 245, 130, 0.66);
+}
+
+.player-2 {
+  box-shadow: 0px 0px 5px 5px rgba(162, 107, 245, 0.66);
 }
