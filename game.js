@@ -15,7 +15,8 @@ class Game {
   }
 
   trackCentralDeck() {
-    if(this.deck[0] !== undefined && this.deck[0].includes('Jack')) {
+    if(this.deck[0] !== undefined && this.deck[0].includes('jack')) {
+      console.log('hello')
       return 'SlapJack';
     } else if(this.deck.length > 1 && this.deck[0].slice(-1) === this.deck[1].slice(-1)) {
       return 'Doubles'
@@ -61,13 +62,16 @@ class Game {
     if(this.trackCentralDeck() === 'SlapJack') {
       player.hand = player.hand.concat(this.deck);
       this.deck = [];
+      return 'SlapJack';
     } else if(this.trackCentralDeck() === 'Doubles' || this.trackCentralDeck() === 'Sandwich') {
       player.hand = player.hand.concat(this.deck);
       this.deck = [];
+      return `${this.trackCentralDeck()}`
     } else if(this.trackCentralDeck() === 'Bad Slap') {
       var firstCard = player.hand.shift();
       this.changeCurrentPlayer();
       this.currentPlayer.hand.push(firstCard);
+      return false;
     }
   }
 
