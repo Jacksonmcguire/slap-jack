@@ -3,18 +3,42 @@
   <link type="text/css" href="styles.css" rel="stylesheet">
 </head>
 <body>
+  <button class="button" id="newGameButton">New Game</button>
+  <button class="button" id="rulesAndControls">Rules and Controls</button>
+  <h1 class="slap-message visibility-hidden"></h1>
   <ul class="deck-container">
-    <li class="player-hand-container">
+    <li class="player-hand-container" id="player1Container">
       <img class="player-hand" id="player1" src="assets/back.png" alt="card back side"></img>
+      <p class="player-name">player 1</p>
+      <p class="win-count player-name" id="player1Wins">0</p>
     </li>
     <li class="middle-deck-container">
-      <article class="middle-deck">
-      </article>
     </li>
-    <li class="player-hand-container">
-      <img class="player-hand" id="player2"src="assets/back.png" alt="card back side"</img>
+    <li class="player-hand-container" id="player2Container">
+      <img class="player-hand player-2" id="player2"src="assets/back.png" alt="card back side"</img>
+      <p class="player-name">player 2</p>
+      <p class="win-count player-name" id="player2Wins">0</p>
     </li>
   </ul>
+  <article class="rules-controls-view hidden">
+    <ul class="rules">RULES
+      <li class="rule">players alternate turns dealing cards face up into the central pile</li>
+      <li class="rule">a player can "slap" at any time, with several outcomes!</li>
+      <li class="rule">if a jack is on top of the central pile when a player slaps, the central pile is added to their hand</li>
+      <li class="rule">same rule applies to doubles, and sandwiches(a pair with any random card in the middle)</li>
+      <li class="rule">if a player slaps when none of those examples are true, that player forfeits their top card to the other's hand</li>
+      <li class="rule">if a player runs out of cards, they will be on their last stand where they have one chance to get back into the game</li>
+      <li class="rule">the player with cards remaining will deal until a jack is revealed and the empty player will be able to try and slap</li>
+      <li class="rule">doubles and sandwiches are no longer valid for the player on their last stand</li>
+      <li class="rule">the empty player may only attempt to slap on a jack, if they are successful then they can reenter the game with the newly added central pile in their hand</li>
+      <li class="rule">if however the player who is out of cards slaps something other than a jack, or the other player slaps that jack first, the empty player loses</li>
+    </ul>
+    <ul class="controls">CONTROLS
+      <li class="control">To start up a new game and split up the deck evenly press the start new game button at the top</li>
+      <li class="controls">player 1: press q to deal a card into the middle, and press f to slap!</li>
+      <li class="controls">player 2: press p to deal a card into the middle, and press j to slap!</li>
+    </ul>
+  </article>
 </body>
 <script type="text/javascript"src="game.js"> </script>
 <script type="text/javascript"src="player.js"> </script>
