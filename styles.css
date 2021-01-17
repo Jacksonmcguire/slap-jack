@@ -9,8 +9,16 @@ li {
   align-items: center;
   align-content: center;
   height: 100%;
+  /* background: url("./assets/background.jpg") no-repeat center; */
+  /* background-size: cover; */
+}
+
+body {
+  height: 100%;
   background: url("./assets/background.jpg") no-repeat center;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
 }
 
 .player-hand-container {
@@ -42,4 +50,51 @@ li {
 
 .player-2 {
   box-shadow: 0px 0px 5px 5px rgba(162, 107, 245, 0.66);
+}
+
+.player-name {
+  color: #fff;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.slap-message {
+  color: #fff;
+  text-align: center;
+  margin: 50px 0px -50px 0px;
+}
+
+button {
+  color: #fff;
+  width: 25%;
+  height: 5%;
+  align-self: center;
+  background-color: rgba(23, 10, 143, 0.53);
+  border-radius: 3px;
+  border: 0 none;
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* .rules-control-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+.rules, .controls {
+  color: #fff;
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bolder;
+}
+
+.rule, .control {
+  font-size: 1.2em;
+  font-weight: lighter;
 }
