@@ -61,20 +61,20 @@ class Game {
 
   slap(player) {
     this.currentPlayer = player;
-    if(this.trackCentralDeck() === 'SlapJack' && player.lastStand === false) {
+    if(this.trackCentralDeck() === 'SlapJack') {
       player.hand = player.hand.concat(this.deck);
       this.deck = [];
       return `SlapJack`;
-    } else if(this.trackCentralDeck() === 'Doubles' || this.trackCentralDeck() === 'Sandwich') {
+    } else if((this.trackCentralDeck() === 'Doubles' || this.trackCentralDeck() === 'Sandwich') && player.lastStand === false) {
       var slapResult = this.trackCentralDeck();
       player.hand = player.hand.concat(this.deck);
       this.deck = [];
       return `${slapResult}`;
-    } else if(this.trackCentralDeck() === 'Bad Slap') {
+    } else if(this.trackCentralDeck() === 'Bad Slap' && player.lastStand === false) {
       var firstCard = player.hand.shift();
       this.changeCurrentPlayer();
       this.currentPlayer.hand.push(firstCard);
-      return `${this.trackCentralDeck()}`;
+      return `Bad Slap`;
     }
   }
 
