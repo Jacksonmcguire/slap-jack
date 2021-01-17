@@ -16,7 +16,6 @@ class Game {
 
   trackCentralDeck() {
     if(this.deck[0] !== undefined && this.deck[0].includes('jack')) {
-      console.log('hello')
       return 'SlapJack';
     } else if(this.deck.length > 1 && this.deck[0].slice(-1) === this.deck[1].slice(-1)) {
       return 'Doubles'
@@ -36,10 +35,13 @@ class Game {
   }
 
   dealToMiddle() {
-    if(this.currentPlayer.hand.length < 0) {
+    if(this.currentPlayer.hand.length > 0) {
       this.currentPlayer.playCard(this);
       this.changeCurrentPlayer();
-    } else {
+    } else if(this.deck.length === 52 && this.player1.lastStand === false && this.player2.lastStand === false) {
+      this.dealHands();
+    }
+    else {
       this.changeCurrentPlayer();
       this.currentPlayer.playCard(this);
     }
@@ -59,19 +61,20 @@ class Game {
 
   slap(player) {
     this.currentPlayer = player;
-    if(this.trackCentralDeck() === 'SlapJack') {
+    if(this.trackCentralDeck() === 'SlapJack' && player.lastStand === false) {
       player.hand = player.hand.concat(this.deck);
       this.deck = [];
-      return 'SlapJack';
+      return `SlapJack`;
     } else if(this.trackCentralDeck() === 'Doubles' || this.trackCentralDeck() === 'Sandwich') {
+      var slapResult = this.trackCentralDeck();
       player.hand = player.hand.concat(this.deck);
       this.deck = [];
-      return `${this.trackCentralDeck()}`
+      return `${slapResult}`;
     } else if(this.trackCentralDeck() === 'Bad Slap') {
       var firstCard = player.hand.shift();
       this.changeCurrentPlayer();
       this.currentPlayer.hand.push(firstCard);
-      return false;
+      return `${this.trackCentralDeck()}`;
     }
   }
 
@@ -79,12 +82,14 @@ class Game {
     this.deck = (createCardVariables('blue') + `,${createCardVariables('gold')}` + `,${createCardVariables('green')}` + `,${createCardVariables('red')}`).split(',');
     this.player1.hand = [];
     this.player2.hand = [];
-    this.dealHands();
+    this.player1.lastStand = false;
+    this.player2.lastStand = false;
+    this.currentPlayer = this.player1;
   }
 
   win(player) {
       player.wins ++;
       player.saveWinsToStorage();
-      player.lastStand = false;
+      this.reset();
     }
   }
