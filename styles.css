@@ -81,17 +81,18 @@ button {
   display: none;
 }
 
-/* .rules-control-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
+ .rules-controls-view {
+  background-color: rgba(23, 10, 143, 0.53);
+  margin: 0px 10% 0px 10%;
+}
 
 .rules, .controls {
   color: #fff;
   text-align: center;
   font-size: 1.4em;
   font-weight: bolder;
+  list-style-image: url("./assets/bullet-pyramid.gif");
+  list-style-position: inside;
 }
 
 .rule, .control {
