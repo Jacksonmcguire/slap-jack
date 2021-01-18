@@ -1,16 +1,17 @@
-
+/* BODY */
 li {
   list-style-type: none;
 }
 
-.deck-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  height: 100%;
-  /* background: url("./assets/background.jpg") no-repeat center; */
-  /* background-size: cover; */
+button {
+  color: #fff;
+  width: 25%;
+  height: 5%;
+  align-self: center;
+  background-color: rgba(23, 10, 143, 0.53);
+  border-radius: 3px;
+  border: 0 none;
+  margin-bottom: 10px;
 }
 
 body {
@@ -21,18 +22,20 @@ body {
   flex-direction: column;
 }
 
+/* DECK CONTAINERS */
+
+.deck-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+
 .player-hand-container {
   flex: 1;
   display: block;
   text-align: center;
-}
-
-.player-hand {
-  height: 55%;
-  width: 60%;
-  margin: 0;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px 5px rgba(107, 245, 130, 0.66);
 }
 
 .middle-deck-container {
@@ -40,7 +43,18 @@ body {
   text-align: center;
 }
 
+/* DECKS */
+
+
 .middle-deck {
+  height: 55%;
+  width: 60%;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 5px rgba(107, 245, 130, 0.66);
+}
+
+.player-hand {
   height: 55%;
   width: 60%;
   margin: 0;
@@ -56,9 +70,28 @@ body {
   color: #fff;
 }
 
-.visibility-hidden {
-  visibility: hidden;
+/* RULES AND CONTROLS */
+
+.rules-controls-view {
+  background-color: rgba(23, 10, 143, 0.53);
+  margin: 0px 10% 0px 10%;
 }
+
+.rules, .controls {
+  color: #fff;
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bolder;
+  list-style-image: url("./assets/bullet-pyramid.gif");
+  list-style-position: inside;
+}
+
+.rule, .control {
+  font-size: 1.2em;
+  font-weight: lighter;
+}
+
+/* MISC */
 
 .slap-message {
   color: #fff;
@@ -66,35 +99,10 @@ body {
   margin: 50px 0px -50px 0px;
 }
 
-button {
-  color: #fff;
-  width: 25%;
-  height: 5%;
-  align-self: center;
-  background-color: rgba(23, 10, 143, 0.53);
-  border-radius: 3px;
-  border: 0 none;
-  margin-bottom: 10px;
-}
-
 .hidden {
   display: none;
 }
 
-/* .rules-control-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
-.rules, .controls {
-  color: #fff;
-  text-align: center;
-  font-size: 1.4em;
-  font-weight: bolder;
-}
-
-.rule, .control {
-  font-size: 1.2em;
-  font-weight: lighter;
+.visibility-hidden {
+  visibility: hidden;
 }

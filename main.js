@@ -13,26 +13,22 @@ var player2Wins = document.getElementById('player2Wins');
 var rulesControlsButton = document.getElementById('rulesAndControls');
 var rulesControlsView = document.querySelector('.rules-controls-view');
 // Event Listeners
+window.addEventListener('load', createGame);
 document.addEventListener('keydown', playerAction);
 newGameButton.addEventListener('click', startGame);
 rulesControlsButton.addEventListener('click', showRules);
 
 
 // Functions
-
 function determineWinner() {
-  if(newGame.player1.hand.length === 0 && newGame.player1.lastStand === false) {
-    newGame.player1.lastStand = true;
-    slapText.innerText = 'Last stand for player 1';
-  } else if(newGame.player2.hand.length === 0 && newGame.player2.lastStand === false) {
-    newGame.player2.lastStand = true;
-    slapText.innerText = 'Last stand for player 2';
-  } else if(newGame.player1.hand.length === 0 && newGame.player1.lastStand === true) {
+  if(newGame.player1.hand.length === 0 && newGame.player1.lastStand === true) {
     newGame.win(newGame.player2);
-    slapText.innerText = 'WOOOHOOOO! Player 2 wins!';
+    slapText.innerText += ' Player 2 wins!';
+    finishGame();
   } else if(newGame.player2.hand.length === 0 && newGame.player2.lastStand === true) {
     newGame.win(newGame.player1);
-    slapText.innerText = 'WOOOHOOOO! Player 1 wins!';
+    slapText.innerText += ' Player 1 wins!';
+    finishGame();
   }
 }
 
@@ -58,8 +54,8 @@ function createCardVariables(color) {
 
 function playerSlap(eventKey) {
   if(eventKey === 'f') {
-    slapMessage(newGame.slap(newGame.player1), newGame.player1);
-    newGame.slap(newGame.player1);
+    var slapResult = newGame.slap(newGame.player1);
+    slapMessage(slapResult, newGame.player1);
     changeMiddleCard(newGame.deck, middleDeckContainer);
     determineWinner();
   } else {
@@ -91,6 +87,10 @@ function changeMiddleCard(deck, deckContainer) {
   if(deck[0] === undefined) {
     middleDeckContainer.innerHTML = `<img></img`;
     return false;
+  } else if(newGame.player1.lastStand === true) {
+    player1Hand.classList.add('visibility-hidden');
+  } else if(newGame.player2.lastStand === true) {
+    player2Hand.classList.add('visibility-hidden');
   }
   var topCard = deck[0];
   deckContainer.innerHTML =
@@ -98,25 +98,33 @@ function changeMiddleCard(deck, deckContainer) {
 }
 
 function slapMessage(result, player) {
-  if(player === newGame.player1 && result !== 'Bad Slap') {
+  if(result === '2' || result === '1') {
+    slapText.innerText = `BAD SLAP! Player ${result} has no cards to forfeit!`
+    slapText.classList.remove('visibility-hidden');
+    determineWinner();
+  } else if(player === newGame.player1 && result !== 'Bad Slap') {
     slapText.innerText = `${result.toUpperCase()}! Player 1 takes the pile!`;
     slapText.classList.remove('visibility-hidden');
+    player1Hand.classList.remove('visibility-hidden');
   } else if(player === newGame.player2 && result !== 'Bad Slap') {
     slapText.innerText = `${result.toUpperCase()}! Player 2 takes the pile!`;
     slapText.classList.remove('visibility-hidden');
-  }
-  else if(result === 'Bad Slap' && player === newGame.player1) {
+  } else if(result === 'Bad Slap' && player === newGame.player1) {
     slapText.innerText = `${result.toUpperCase()}! Player 1 forfeits a card to Player 2!`;
     slapText.classList.remove('visibility-hidden');
+    player2Hand.classList.remove('visibility-hidden');
+    newGame.player2.lastStand = false;
   } else if(result === 'Bad Slap' && player === newGame.player2) {
     slapText.innerText = `${result.toUpperCase()}! Player 2 forfeits a card to Player 1!`;
     slapText.classList.remove('visibility-hidden');
+    player1Hand.classList.remove('visibility-hidden');
+    newGame.player1.lastStand = false;
   }
   }
+
 function showStartPage() {
   deckContainer.classList.remove('hidden');
-  rulesControlsButton.classList.remove('hidden');
-  newGameButton.classList.remove('hidden');
+  toggleButtons();
 }
 
 function startGame() {
@@ -124,16 +132,35 @@ function startGame() {
     deckContainer.classList.remove('hidden');
     rulesControlsView.classList.add('hidden');
   }
-  newGameButton.classList.add('hidden');
-  rulesControlsButton.classList.add('hidden');
+  player1Hand.classList.remove('visibility-hidden');
+  player2Hand.classList.remove('visibility-hidden');
+  toggleButtons();
   newGame.dealHands();
+}
+
+function finishGame() {
+  toggleButtons();
+  middleDeckContainer.innerHTML = `<img></img`;
   var player1 = localStorage.getItem(`${newGame.player1.id}`);
   var player2 = localStorage.getItem(`${newGame.player2.id}`);
-  player1Wins.innerText = player1;
-  player2Wins.innerText = player2;
+  player1Wins.innerText = `${player1} wins`;
+  player2Wins.innerText = `${player2} wins`;
+  if(player1 === null) {
+    player1Wins.innerText = `0 wins`;
+    return false;
+  } else if(player2 === null) {
+    player2Wins.innerText = `0 wins`;
+    return false;
+  }
+}
+
+function toggleButtons() {
+  newGameButton.classList.toggle('hidden');
+  rulesControlsButton.classList.toggle('hidden');
 }
 
 function showRules() {
   deckContainer.classList.add('hidden');
   rulesControlsView.classList.remove('hidden');
+  rulesControlsButton.classList.add('hidden');
 }
