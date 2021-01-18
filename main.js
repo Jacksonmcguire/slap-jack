@@ -136,4 +136,5 @@ function startGame() {
 function showRules() {
   deckContainer.classList.add('hidden');
   rulesControlsView.classList.remove('hidden');
+  rulesControlsButton.classList.add('hidden');
 }
