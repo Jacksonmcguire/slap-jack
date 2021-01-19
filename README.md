@@ -26,4 +26,4 @@
 ## LocalStorage to hold data
 * Persist player win data using local storage(number of wins should persist across page refreshes)
 * Ended up using session storage instead, to only persist through refresh, and not page close and reopen.
-![](https://gph.is/g/EvWeJQg)
+![](https://media.giphy.com/media/1LK0VMTVufzD43CLdS/giphy.gif)
