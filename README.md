@@ -17,12 +17,12 @@
 ## Challenges/Wins
 * Taking what I have been practicing in class and with groups and being able to implement everything on my own was a big win.
 * Was a little overwhelmed by how much extra added features or functionality for the UX was expected on a pretty unguided project.
-## Player In Game
-![](https://media.giphy.com/media/GXK900qfPQPdQbPjIn/giphy.gif)
-## Player Wins Game
-![](https://media.giphy.com/media/ydVWk9sIYNwE9f0coq/giphy.gif)
 ## Show rules section
 ![](https://media.giphy.com/media/RHmML88LcCxF3wFiMl/giphy.gif)
+## Player in Game
+![](https://media.giphy.com/media/ydVWk9sIYNwE9f0coq/giphy.gif)
+## Player Wins Game
+![](https://media.giphy.com/media/GXK900qfPQPdQbPjIn/giphy.gif)
 ## LocalStorage to hold data
 * Persist player win data using local storage(number of wins should persist across page refreshes)
 * Ended up using session storage instead, to only persist through refresh, and not page close and reopen.
