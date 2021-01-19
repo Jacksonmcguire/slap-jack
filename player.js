@@ -1,6 +1,6 @@
 class Player {
-  constructor() {
-    this.id = Math.floor(Math.random() * 1000);
+  constructor(id) {
+    this.id = id;
     this.wins = 0;
     this.hand = [];
     this.lastStand = false;
@@ -12,6 +12,8 @@ class Player {
     }
   }
   saveWinsToStorage() {
-    localStorage.setItem(`${this.id}`, this.wins);
+    var winCount = sessionStorage.getItem(`${this.id}`);
+    winCount ++;
+    sessionStorage.setItem(`${this.id}`, winCount || this.wins);
   }
 }
