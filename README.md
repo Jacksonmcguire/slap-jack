@@ -27,3 +27,6 @@
 * Persist player win data using local storage(number of wins should persist across page refreshes)
 * Ended up using session storage instead, to only persist through refresh, and not page close and reopen.
 ![](https://media.giphy.com/media/1LK0VMTVufzD43CLdS/giphy.gif)
+## Other
+"Automatically reset the game to allow for a new game to be played after the previous game is won"
+I ended up created a new game button that the user can press to reset the game after one is over, I started off with it resetting automatically, but wasn't much of a fan of a new game starting up with seemingly no notice.
