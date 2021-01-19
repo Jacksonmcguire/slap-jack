@@ -5,6 +5,7 @@ class Game {
     this.deck = (createCardVariables('blue') + `,${createCardVariables('gold')}` + `,${createCardVariables('green')}` + `,${createCardVariables('red')}`).split(',');
     this.currentPlayer = this.player1;
   }
+  
   win(player) {
     player.wins ++;
     player.saveWinsToStorage();
