@@ -1,4 +1,4 @@
-# slap-jack
+# Slap Jack
 ## Project Goals
 * Build a website/app that allows a user to play slapjack against themselves, or another user.
 * Implement local storage to save player win data across page refreshes.
@@ -17,6 +17,6 @@
 ## Challenges/Wins
 * Taking what I have been practicing in class and with groups and being able to implement everything on my own was a big win.
 * Was a little overwhelmed by how much extra added features or functionality for the UX was expected on a pretty unguided project.
-[The Game in action](https://media.giphy.com/media/GXK900qfPQPdQbPjIn/giphy.gif)
-[Player wins game](https://media.giphy.com/media/ydVWk9sIYNwE9f0coq/giphy.gif)
-[Show Rules section](https://media.giphy.com/media/RHmML88LcCxF3wFiMl/giphy.gif)
+![The Game in action](https://media.giphy.com/media/GXK900qfPQPdQbPjIn/giphy.gif)
+![Player wins game](https://media.giphy.com/media/ydVWk9sIYNwE9f0coq/giphy.gif)
+![Show Rules section](https://media.giphy.com/media/RHmML88LcCxF3wFiMl/giphy.gif)
